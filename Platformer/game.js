@@ -32,7 +32,7 @@ function setup() {
         groundSprites.add(groundSprite);
     }
     
-    player = createSprite(100, height-75, 50, 50);
+    player = createSprite(100, height-75, 25, 25);
     
     obstacleSprites = new Group();
 }
@@ -73,14 +73,14 @@ function draw() {
         
         if(random() > 0.95)
         {
-            var obstacle = createSprite(camera.position.x width, (height-50) - 15, 30, 30);
+            var obstacle = createSprite(camera.position.x + width, random(0, (height-50) - 15, 10, 10));
             obstacleSprites.add(obstacle);
         }
         
         var firstObstacle = obstacleSprites[0];
         if (obstacleSprites.length > 0 && firstObstacle.position.x <= camera.position.x - (width/2 + firstObstacle.width/2))
         {
-            removeSprite(firstObstale);
+            removeSprite(firstObstacle);
         }
         
         obstacleSprites.overlap(player, endGame);
@@ -100,10 +100,10 @@ function endGame() {
 function mouseClicked() {
     score = 0;
     if (isGameOver) {
-        for (var i = 0l n < numGroundSprites; n++)
+        for (var i = 0; i < numGroundSprites; i++)
         {
             var groundSprite = groundSprites[i];
-            groundSprite.position.x = n*50;
+            groundSprite.position.x = i*50;
         }
         
         player.position.x = 100;
